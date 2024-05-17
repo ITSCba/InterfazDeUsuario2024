@@ -1,0 +1,17 @@
+
+métodos de BeautifulSoup
+sopa: Es lo que contiene la pagina. El siguiente ejemplo retorna una sopa:
+def bajar(laDir): 
+   laPag = urlopen(laDir) 
+   return BeautifulSoup(laPag.read())
+
+*sopa.find():
+    -Puede pasarse argumentos en forma de tuple. Ej:
+    sopa.find("h1","table",class_="mi_clase_css")
+*sopa.find_all():
+    - Puede pasarse parametros/argumentos en forma de diccionario.Ej:
+    -<a href="www.mipagina.com" alt="a mi pagina">
+    -href= es un atributo o attrs
+    sopa.find_all(["h1","h2","h3"])
+    sopa.find_all(["p","h2",attrs={precio:100, color:verde}])
+
