@@ -2,6 +2,12 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 
+#Ciudades:
+#Taskent; Mar_del_Plata; Las_Vegas
+#Descubrir en que posición se encuentra la tabla de clima para algun ciudad de la lista
+#¿Cualés con las filas de temperatura máx media y temperatura min media?
+#Realizar un diccionario para para cada ciudad con Nombre, PosiciónTabla, Temperatura Máxima Media, Temperatura Mínima Media 
+# Esto baja todo de la pagina
 def bajar(laDir): 
    laPag = urlopen(laDir) 
    return BeautifulSoup(laPag.read(),features="html.parser") 
@@ -32,17 +38,7 @@ def EncontrarTemperaturaMinima(temperaturas=[]):
       if float(temp)<minima:
          minima=float(temp)
    return minima
-#Ciudades:
-#Taskent; Mar_del_Plata; Las_Vegas
-#Descubrir en que posición se encuentra la tabla de clima para algun ciudad de la lista
-#¿Cualés con las filas de temperatura máx media y temperatura min media?
-#Realizar un diccionario para para cada ciudad con Nombre, PosiciónTabla, Temperatura Máxima Media, Temperatura Mínima Media 
 
-lista_de_ciudades = [
-    {'nom': 'Taskent', 'ptabla': 1, 'tmax': 3, 'tmin':5},
-    {'nom': 'Mar_del_Plata', 'ptabla': 8, 'tmax': 3, 'tmin':5},
-    {'nom': 'Las_Vegas', 'ptabla': 3, 'tmax': 3, 'tmin':5},
-]
 
 
 def Calcular_Diferencia_Temperatura(ciudad:any):
@@ -54,8 +50,20 @@ def Calcular_Diferencia_Temperatura(ciudad:any):
     maximaMedia=EncontrarTemperaturaMaxima(temperaturas[ciudad['tmax']])
     minimaMedia=EncontrarTemperaturaMinima(temperaturas[ciudad['tmin']])
     diferencia= maximaMedia-minimaMedia
-    print(f"La diferencia de temperaturas en {ciudad['nom']} es de {round(diferencia,1)}")
+    print(f"La diferencia de temperaturas medias en {ciudad['nom']} es de {round(diferencia,1)}")
 
+
+lista_de_ciudades = [
+    {'nom': 'Taskent', 'ptabla': 1, 'tmax': 3, 'tmin':5},
+    {'nom': 'Mar_del_Plata', 'ptabla': 8, 'tmax': 3, 'tmin':5},
+    {'nom': 'Las_Vegas', 'ptabla': 3, 'tmax': 3, 'tmin':5},
+    {'nom': 'San_Juan_(Puerto_Rico)', 'ptabla': 3, 'tmax': 3, 'tmin':5},
+    {'nom': 'Neuquen_(ciudad)', 'ptabla': 5, 'tmax': 3, 'tmin':5},
+    {'nom': 'Alma_Ata', 'ptabla': 4, 'tmax': 3, 'tmin':5},
+   #  {'nom': 'Salta', 'ptabla': 1, 'tmax': 2, 'tmin':4},
+    {'nom': 'Kasgar', 'ptabla': 1, 'tmax': 1, 'tmin':2},    
+]
+# Esto itera por ciudades del arreglo
 for ciudad in lista_de_ciudades:
    Calcular_Diferencia_Temperatura(ciudad)
 
